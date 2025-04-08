@@ -1,5 +1,4 @@
 .post {
-    border: 2px solid var(--clr-surface-tonal-a0);
     padding: 1.2rem 1.2rem;
     border-radius: 12px;
     transition: box-shadow 0.3s ease;
@@ -8,6 +7,11 @@
     align-items: center;
     flex-direction: column;
     margin-top: 1rem;
+}
+
+.post button {
+    padding: 0.3rem 1.5rem;
+    margin: 0.5rem;
 }
 
 .post h2 {
@@ -25,8 +29,7 @@
 }
 
 .comments {
-    background-color: var(--clr-surface-tonal-a0);
-    margin: 0.5rem;
+    margin: 0.5rem auto;
     padding: 1rem 1.2rem;
     border-radius: 12px;
     display: flex;
@@ -34,18 +37,10 @@
     text-wrap: wrap;
     overflow: hidden;
     max-width: 40ch;
+    align-items: center;
 }
 
-.comment::after{
-    content: "";
-    display: block;
-    width: 80%;
-    margin: 0 auto;
-    border-top: 2px solid var(--clr-light-a0);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.comment:last-child::after{
-    display: none;
+.comments button {
+    padding: 0.1rem 0.5rem;
+    margin: 0.3rem;
 }

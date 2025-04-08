@@ -78,6 +78,23 @@ export const postRequest = async (title, text, state, token) => {
   }
 };
 
+export const editPostRequest = async (post, title, text, state, token) => {
+  const url = `${URL}/posts/${post.id}`;
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, text, state }),
+    });
+    return response.status;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const deletePost = async (post, token) => {
   const url = `${URL}/posts/${post.id}`;
   try {

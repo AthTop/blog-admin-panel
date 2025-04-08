@@ -6,14 +6,16 @@ import FormatedDate from "../FormatedDate/FormatedDate";
 import Comment from "../Comment/Comment";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { deletePost } from "../../utils/api";
+import { Editpost } from "../Editpost/Editpost";
 
 function Post() {
   const [post, setPost] = useState();
   const [error, setError] = useState();
   const [needsRefetch, setNeedsRefetch] = useState(false);
   const { postId } = useParams();
-  const { currentUser, token } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     fetchPost(postId)
@@ -22,10 +24,9 @@ function Post() {
     setNeedsRefetch(false);
   }, [postId, needsRefetch]);
 
-  // Todo
-  // const changeState = async () => {
-  //   const stateResponse = changePostState(postId);
-  // }
+  const triggerEdit = () => {
+    setIsEdit(!isEdit);
+  };
 
   const onDelete = async () => {
     alert("Are you sure?");
@@ -39,6 +40,15 @@ function Post() {
   };
 
   if (post) {
+    if (isEdit) {
+      return (
+        <Editpost
+          post={post}
+          triggerEdit={triggerEdit}
+          setNeedsRefetch={setNeedsRefetch}
+        />
+      );
+    }
     return (
       <div className="content" key={post.id}>
         <span>{error}</span>
@@ -50,8 +60,10 @@ function Post() {
             <span>By: {post.author.username}</span>
           </p>
           <p>State: {post.state}</p>
-          <button>Edit</button>
-          <button onClick={onDelete}>Delete</button>
+          <div>
+            <button onClick={triggerEdit}>Edit</button>
+            <button onClick={onDelete}>Delete</button>
+          </div>
         </div>
         <div className={styles.comments}>
           {post.comments.map((comment) => {

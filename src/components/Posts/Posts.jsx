@@ -13,7 +13,6 @@ function Posts() {
       .finally(setLoading(false))
       .catch((err) => console.log(err));
   }, []);
-  console.log(posts);
   return (
     <div className={isLoading ? styles.loading : styles.posts}>
       <Link className={styles.link} to="newpost">

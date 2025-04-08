@@ -1,0 +1,39 @@
+.wrapper {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.wrapper input {
+    width: 60%;
+}
+
+.wrapper textarea {
+    height: 250px;
+    width: 500px;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.wrapper input[type="checkbox"] {
+    width: min-content;
+}
+
+.wrapper button {
+    padding: 0.5rem 2rem;
+    width: min-content;
+}
