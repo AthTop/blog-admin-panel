@@ -110,3 +110,36 @@ export const deletePost = async (post, token) => {
     console.log(error);
   }
 };
+
+export const deleteComment = async (postId, comment, token) => {
+  const url = `${URL}/posts/${postId}/comments/${comment.id}`;
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.status;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editCommentRequest = async (postId, commentId, text, token) => {
+  const url = `${URL}/posts/${postId}/comments/${commentId}`;
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text }),
+    });
+    return response.status;
+  } catch (error) {
+    console.log(error);
+  }
+};

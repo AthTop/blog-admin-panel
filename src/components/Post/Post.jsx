@@ -31,7 +31,6 @@ function Post() {
   const onDelete = async () => {
     alert("Are you sure?");
     const deleteResponse = await deletePost(post, token);
-    console.log(deleteResponse);
     if (deleteResponse === 204) {
       navigate("/posts");
     } else {
@@ -69,7 +68,11 @@ function Post() {
           {post.comments.map((comment) => {
             return (
               <div key={comment.id} className={styles.comment}>
-                <Comment comment={comment} />
+                <Comment
+                  comment={comment}
+                  setError={setError}
+                  setNeedsRefetch={setNeedsRefetch}
+                />
               </div>
             );
           })}
