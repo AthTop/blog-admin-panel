@@ -77,3 +77,19 @@ export const postRequest = async (title, text, state, token) => {
     console.log(error.message);
   }
 };
+
+export const deletePost = async (post, token) => {
+  const url = `${URL}/posts/${post.id}`;
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.status;
+  } catch (error) {
+    console.log(error);
+  }
+};
